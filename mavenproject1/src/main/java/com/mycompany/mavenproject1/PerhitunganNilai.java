@@ -13,6 +13,12 @@ import java.util.*;
 public class PerhitunganNilai {
 
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        RubrikPenilaian rubrik = new RubrikPenilaian();
+        
+        int[] inputNilaiPenguji1 = new int[rubrik.getSizeListPenilaianPenguji()];
+        int[] inputNilaiPenguji2 = new int[rubrik.getSizeListPenilaianPenguji()];
+        int[] inputNilaiPembimbing = new int[rubrik.getSizeListPenilaianPembimbing()];
         //input jumlah komponenilai
         
         //input masing masing komponen nilai oleh dosbing
@@ -21,6 +27,10 @@ public class PerhitunganNilai {
         
         //compute nilai
         
+    }
+    
+    public double hitungNilaiPenguji(RubrikPenilaian rubrik, int[] inputNilaiPenguji){
+        double 
     }
 }
 
@@ -46,7 +56,15 @@ class RubrikPenilaian {
     }
     
     public KomponenNilai getKomponenNilaiPembimbing(int i){
-        return listPenilaianPenguji.get(i);
+        return listPenilaianPembimbing.get(i);
+    }
+    
+    public int getSizeListPenilaianPenguji() {
+        return listPenilaianPenguji.size();
+    }
+    
+    public int getSizeListPenilaianPembimbing() {
+        return listPenilaianPembimbing.size();
     }
 }
 
