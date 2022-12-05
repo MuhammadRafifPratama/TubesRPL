@@ -7,19 +7,20 @@ package com.mycompany.mavenproject1;
 
 /**
  *
- * @author A C E R
+ * @author Rafif, Erwin, Andrianho
  */
 import java.util.*;
 public class PerhitunganNilai {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        RubrikPenilaian rubrik = new RubrikPenilaian();
+        RubrikPenilaian rubrik =  new RubrikPenilaian();
+        
+
         
         int[] inputNilaiPenguji1 = new int[rubrik.getSizeListPenilaianPenguji()];
         int[] inputNilaiPenguji2 = new int[rubrik.getSizeListPenilaianPenguji()];
         int[] inputNilaiPembimbing = new int[rubrik.getSizeListPenilaianPembimbing()];
-        //input jumlah komponenilai
         
         //input masing masing komponen nilai oleh dosbing
         
@@ -30,11 +31,34 @@ public class PerhitunganNilai {
     }
     
     public double hitungNilaiPenguji(RubrikPenilaian rubrik, int[] inputNilaiPenguji){
-        double 
+        double total = 0;
+        for(int i=0; i<rubrik.listPenilaianPenguji.size(); i++){
+            KomponenNilai curr = rubrik.listPenilaianPenguji.get(i);
+            total+= (curr.getBobot()*inputNilaiPenguji[i]);
+        }
+        return total;
+    }
+    
+    public double hitungNilaiPembimbing(RubrikPenilaian rubrik, int[] inputNilaiPembimbing){
+        double total = 0;
+        for(int i=0; i<rubrik.listPenilaianPembimbing.size(); i++){
+            KomponenNilai curr = rubrik.listPenilaianPembimbing.get(i);
+            total+= (curr.getBobot()*inputNilaiPembimbing[i]);
+        }
+        return total;
+    }
+    
+    public double hitungTotal(List<Double> rekapNilai){
+        double curr = 0;
+        for(int i=0; i<rekapNilai.size(); i++){
+            curr+= rekapNilai.get(i);
+        }
+        double total = curr/rekapNilai.size();
+        return total;
     }
 }
 
-class RubrikPenilaian {
+final class RubrikPenilaian {
     ArrayList<KomponenNilai> listPenilaianPenguji;
     ArrayList<KomponenNilai> listPenilaianPembimbing;
     
@@ -68,12 +92,21 @@ class RubrikPenilaian {
     }
 }
 
-class KomponenNilai {
-    String title;
-    float bobot;
+final class KomponenNilai {
+    private String title;
+    private double bobot;
     
     public KomponenNilai(String title, float bobot){
         this.title = title;
-        this.bobot = (float)bobot/100;
+        this.bobot = (double)bobot/100;
+    }
+    
+    public double getBobot() {
+        return this.bobot;
+    }
+    
+    public String getTitle(){
+        return this.title;
     }
 }
+
